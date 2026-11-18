@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -54,15 +55,18 @@ class PokemonAdapter(private val onclickListener: (PokemonModel) -> Unit) :
 
         }
 
-        private fun bindType(types: List<PokemonType>){
+        private fun bindType(types: List<PokemonType>) {
             typeContainer.removeAllViews()
 
             val inflater = LayoutInflater.from(itemView.context)
             types.forEach { type ->
                 val chip = inflater.inflate(R.layout.view_type_chip, typeContainer, false)
                 val typeName = chip.findViewById<TextView>(R.id.txtTypeName)
+                val typeDot = chip.findViewById<View>(R.id.typeDot)
                 typeName.text = type.displayName
 
+                val color = ContextCompat.getColor(itemView.context, type.colorRes)
+                typeDot.background = typeDot.background.mutate().also { it.setTint(color) }
                 typeContainer.addView(chip)
             }
         }
