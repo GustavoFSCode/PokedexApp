@@ -58,7 +58,7 @@
         android:id="@+id/content"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:background="@drawable/bg_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +67,7 @@
 
         <EditText
             android:id="@+id/inputSearch"
+            android:background="@drawable/bg_search"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:autofillHints=""

@@ -3,11 +3,13 @@ package br.com.escolanovaeratech.listapokemonmock
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import br.com.escolanovaeratech.listapokemonmock.adapter.PokemonAdapter
 import br.com.escolanovaeratech.listapokemonmock.data.PokemonMock
@@ -25,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         val rvPokemon = findViewById<RecyclerView>(R.id.rvPokemon)
         applyWindowInsets(findViewById(R.id.main), rvPokemon)
 
+        val edtInputSearch = findViewById<EditText>(R.id.inputSearch)
+
         // Criar adapter
         val adapter = PokemonAdapter{ clickedPokemon ->
             //Abrir tela de detalhes
@@ -37,6 +41,20 @@ class MainActivity : AppCompatActivity() {
 
         //Enviar lista de pokemons para o adapter
         adapter.submitList(PokemonMock.pokemons)
+
+        edtInputSearch.doOnTextChanged { text, _, _, _ ->
+            val filteredPokemons = if(text?.isBlank() == true){
+                PokemonMock.pokemons
+            } else {
+                PokemonMock.pokemons.filter { pokemon ->
+                    pokemon.name.contains(text.toString(), ignoreCase = true)
+
+                }
+            }
+
+            adapter.submitList(filteredPokemons)
+
+        }
     }
 
     private fun applyWindowInsets(root: View, recyclerView: RecyclerView) {
