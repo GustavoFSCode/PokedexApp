@@ -3,6 +3,7 @@ package br.com.escolanovaeratech.listapokemonmock
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,12 +21,14 @@ class DetailAcitivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val txtDetailsId = findViewById<TextView>(R.id.txtDetailsId)
+
+        // Find Pokemon by id
         val pokemonId = intent.getIntExtra(EXTRA_POKEMON_ID, 0)
-
         val pokemonModel = PokemonMock.findById(pokemonId)
-        txtDetailsId.text = pokemonModel?.name
 
+        findViewById<ImageView>(R.id.backButton).setOnClickListener {
+            finish()
+        }
 
 
     }
