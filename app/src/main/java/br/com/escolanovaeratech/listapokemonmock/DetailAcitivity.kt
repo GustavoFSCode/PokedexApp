@@ -4,12 +4,17 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
@@ -45,15 +50,33 @@ class DetailAcitivity : AppCompatActivity() {
         val txtHeight = findViewById<TextView>(R.id.txtHeight)
         val txtWeight = findViewById<TextView>(R.id.txtWeight)
         val txtNumber = findViewById<TextView>(R.id.txtNumber)
+        val typesContainer = findViewById<LinearLayout>(R.id.typeContainer)
+        val main = findViewById<ConstraintLayout>(R.id.main)
 
-        txtName.text = pokemonModel?.name
-        txtDescription.text = pokemonModel?.description
-        imgPokemon.setImageResource(pokemonModel?.imageRes ?: 0)
-        txtHeight.text = pokemonModel?.heightMeters.toString()
-        txtWeight.text = pokemonModel?.weightKg.toString()
-        txtNumber.text = pokemonModel?.pokedexNumber
+        if (pokemonModel != null) {
+            txtName.text = pokemonModel.name
+            txtDescription.text = pokemonModel.description
+            imgPokemon.setImageResource(pokemonModel.imageRes)
+            txtHeight.text = pokemonModel.heightMeters.toString()
+            txtWeight.text = pokemonModel.weightKg.toString()
+            txtNumber.text = pokemonModel.pokedexNumber
+
+            //get main color
+            val headerColor = ContextCompat.getColor(this, pokemonModel.types.first().colorRes)
+            main.setBackgroundColor(headerColor)
 
 
+            // Bind types
+            val inflater = LayoutInflater.from(this)
+            pokemonModel.types.forEach { type ->
+                val chip = inflater.inflate(R.layout.view_detail_type_chip, typesContainer, false) as TextView
+                chip.text = type.displayName
+                val color = ContextCompat.getColor(this, type.colorRes)
+                chip.background = chip.background.mutate().also { it.setTint(color) }
+                chip.setTextColor(Color.WHITE)
+                typesContainer.addView(chip)
+            }
+        }
     }
 
     companion object {

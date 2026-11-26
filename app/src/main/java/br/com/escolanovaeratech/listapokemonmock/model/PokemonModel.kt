@@ -17,5 +17,6 @@ data class PokemonModel(
     val specialDefense: Int,
     val speed: Int,
     val isFavorite: Boolean = false,
-    @param:DrawableRes val imageRes: Int
+    @param:DrawableRes val imageRes: Int,
+    @param:DrawableRes val thumbnailRes: Int = imageRes
  )

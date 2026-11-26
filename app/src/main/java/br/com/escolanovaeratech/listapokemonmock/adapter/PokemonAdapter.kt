@@ -1,6 +1,5 @@
 package br.com.escolanovaeratech.listapokemonmock.adapter
 
-import android.text.method.KeyListener
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +44,7 @@ class PokemonAdapter(private val onclickListener: (PokemonModel) -> Unit) :
         fun bind(model: PokemonModel) {
             txtId.text = model.pokedexNumber
             txtName.text = model.name
-            imgPokemon.setImageResource(model.imageRes)
+            imgPokemon.setImageResource(model.thumbnailRes)
 
             itemView.setOnClickListener {
                 onclickListener.invoke(model)
@@ -56,18 +55,21 @@ class PokemonAdapter(private val onclickListener: (PokemonModel) -> Unit) :
         }
 
         private fun bindType(types: List<PokemonType>) {
-            typeContainer.removeAllViews()
-
-            val inflater = LayoutInflater.from(itemView.context)
-            types.forEach { type ->
-                val chip = inflater.inflate(R.layout.view_type_chip, typeContainer, false)
+            types.forEachIndexed { index, type ->
+                val chip = typeContainer.getChildAt(index) ?: LayoutInflater.from(itemView.context)
+                    .inflate(R.layout.view_type_chip, typeContainer, false)
+                    .also { typeContainer.addView(it) }
+                chip.visibility = View.VISIBLE
                 val typeName = chip.findViewById<TextView>(R.id.txtTypeName)
                 val typeDot = chip.findViewById<View>(R.id.typeDot)
                 typeName.text = type.displayName
 
                 val color = ContextCompat.getColor(itemView.context, type.colorRes)
                 typeDot.background = typeDot.background.mutate().also { it.setTint(color) }
-                typeContainer.addView(chip)
+            }
+
+            for (index in types.size until typeContainer.childCount) {
+                typeContainer.getChildAt(index).visibility = View.GONE
             }
         }
     }
