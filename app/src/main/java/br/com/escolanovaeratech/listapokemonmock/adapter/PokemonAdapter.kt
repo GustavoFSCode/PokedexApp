@@ -43,7 +43,7 @@ class PokemonAdapter(private val onclickListener: (PokemonModel) -> Unit) :
         private val typeContainer = itemView.findViewById<LinearLayout>(R.id.typeContainer)
 
         fun bind(model: PokemonModel) {
-            txtId.text = model.id.toString()
+            txtId.text = model.pokedexNumber
             txtName.text = model.name
             imgPokemon.setImageResource(model.imageRes)
 

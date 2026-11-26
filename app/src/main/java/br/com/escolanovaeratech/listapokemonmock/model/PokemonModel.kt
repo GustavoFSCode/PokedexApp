@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 
 data class PokemonModel(
     val id: Int,
+    val pokedexNumber: String,
     val name: String,
     val types: List<PokemonType>,
     val description: String,

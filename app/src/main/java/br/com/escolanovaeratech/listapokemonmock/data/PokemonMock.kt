@@ -9,6 +9,7 @@ object PokemonMock {
     val pokemons: List<PokemonModel> = listOf(
         PokemonModel(
             id = 1,
+            pokedexNumber = "#001",
             name = "Bulbasaur",
             types = listOf(PokemonType.GRAMA, PokemonType.VENENO),
             description = "Há uma semente de planta nas costas deste Pokémon desde o nascimento. A semente cresce lentamente.",
@@ -24,6 +25,7 @@ object PokemonMock {
         ),
         PokemonModel(
             id = 4,
+            pokedexNumber = "#004",
             name = "Charmander",
             types = listOf(PokemonType.FOGO),
             description = "Prefere lugares quentes. Quando chove, dizem que sai vapor da ponta de sua cauda.",
@@ -39,6 +41,7 @@ object PokemonMock {
         ),
         PokemonModel(
             id = 7,
+            pokedexNumber = "#007",
             name = "Squirtle",
             types = listOf(PokemonType.AGUA),
             description = "Após o nascimento, suas costas incham e endurecem, formando um casco. Dispara espuma pela boca.",
@@ -54,6 +57,7 @@ object PokemonMock {
         ),
         PokemonModel(
             id = 25,
+            pokedexNumber = "#025",
             name = "Pikachu",
             types = listOf(PokemonType.ELETRICO),
             description = "Pikachu armazena eletricidade em suas bochechas. Quando se sente ameaçado, libera poderosas descargas elétricas.",
@@ -69,6 +73,7 @@ object PokemonMock {
         ),
         PokemonModel(
             id = 52,
+            pokedexNumber = "#052",
             name = "Meowth",
             types = listOf(PokemonType.NORMAL),
             description = "Adora moedas. Vagueia pelas ruas coletando moedas durante o dia e patrulha seu território à noite.",
@@ -84,6 +89,7 @@ object PokemonMock {
         ),
         PokemonModel(
             id = 54,
+            pokedexNumber = "#054",
             name = "Psyduck",
             types = listOf(PokemonType.AGUA),
             description = "Sofre constantemente com dores de cabeça. Quando a dor fica intensa, começa a usar poderes misteriosos.",
@@ -99,6 +105,7 @@ object PokemonMock {
         ),
         PokemonModel(
             id = 94,
+            pokedexNumber = "#094",
             name = "Gengar",
             types = listOf(PokemonType.FANTASMA, PokemonType.VENENO),
             description = "Na noite de lua cheia, se as sombras se movem sozinhas e riem, é obra de Gengar.",
@@ -114,6 +121,7 @@ object PokemonMock {
         ),
         PokemonModel(
             id = 133,
+            pokedexNumber = "#133",
             name = "Eevee",
             types = listOf(PokemonType.NORMAL),
             description = "Seu código genético é irregular. Pode mutar se for exposto à radiação de pedras elementais.",
@@ -129,6 +137,7 @@ object PokemonMock {
         ),
         PokemonModel(
             id = 143,
+            pokedexNumber = "#143",
             name = "Snorlax",
             types = listOf(PokemonType.NORMAL),
             description = "Muito preguiçoso. Só come e dorme. Conforme seu corpo cresce, fica cada vez mais indolente.",
